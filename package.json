@@ -2,21 +2,32 @@
   "name": "akabane-nyanko_front",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "NODE_ENV=production node server.js",
+    "lint": "next lint",
+    "format": "prettier --write \"./src/**/*.{ts,tsx}\""
   },
   "dependencies": {
+    "@zeit/next-sass": "^1.0.1",
+    "axios": "^0.24.0",
+    "express": "^4.17.1",
+    "http-proxy-middleware": "^2.0.1",
     "next": "12.0.3",
+    "node-sass": "^7.0.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.4",
+    "swr": "^1.0.1"
   },
   "devDependencies": {
-    "@types/node": "16.11.6",
-    "@types/react": "17.0.34",
+    "@types/node": "^16.11.6",
+    "@types/react": "^17.0.34",
     "eslint": "7",
     "eslint-config-next": "12.0.3",
-    "typescript": "4.4.4"
+    "prettier": "2.4.1",
+    "sass": "^1.45.0",
+    "typescript": "^4.4.4"
   }
 }

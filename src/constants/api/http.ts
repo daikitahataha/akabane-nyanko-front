@@ -1,0 +1,5 @@
+export const PROFILE_UPDATE = 'PROFILE_UPDATE'
+
+export const UNAUTHENTICATE = 'UNAUTHENTICATE'
+
+export const NOT_FOUND = 'NOT_FOUND'

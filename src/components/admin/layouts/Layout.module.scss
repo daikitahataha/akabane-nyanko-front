@@ -1,0 +1,24 @@
+.admin__header_wrap {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(34,36,38,.15);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #FFF;
+    z-index: 999;
+}
+
+.admin_body_layout {
+    display: flex;
+    padding-top: 50px;
+    .admin__left_side_menu_wrap {
+        height: 100vh;
+    }
+    .main {
+        width: 100%;
+        margin-top: 30px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
