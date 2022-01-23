@@ -12,7 +12,7 @@ const AreaIndex: NextPage = () => {
 		<div>
 			<Grid>
                 <Grid.Column width={10}>
-                    <Header as='h2'>エリア一覧</Header>
+                    <Header as='h2'>タグ一覧</Header>
                 </Grid.Column>
             </Grid>
 			<Grid>

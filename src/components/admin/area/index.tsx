@@ -5,19 +5,8 @@ import {
 	Table,
 	Pagination
 } from 'semantic-ui-react'
-import { area } from '../../../api/admin/area'
 
 const Index: NextPage = () => {
-
-    const [page, setPage] = useState<number>(1)
-    // const { data: result } = useSWR('/area/list', url => area.list(url, page))
-    useEffect(() => {
-        getList()
-    }, [page])
-
-    const getList = useCallback(async () => {
-        await area.list('/area/list', page)
-    }, [])
 
     return (
         <>
