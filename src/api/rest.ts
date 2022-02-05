@@ -3,56 +3,30 @@ import { JSONObject } from '../constants/api/json';
 
 const invokeRequest = async (
     request: () => Promise<AxiosResponse>
-): Promise<unknown> => {
+)  => {
     const response = await request();
 
     return response.data;
 };
 
-class API {
-    private client: AxiosInstance;
+const axiosClient = axios.create({});
 
-    constructor() {
-        this.client = axios.create({
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest',
-            },
-        });
-    }
+const baseURL = 'http://localhost:8080/'
 
-    async get(path: string, params?: JSONObject): Promise<unknown> {
-        const request = (): Promise<AxiosResponse> =>
-        this.client.get(path, { params });
+const get = async(path: string, params?: JSONObject): Promise<unknown> => {
+    const requestURL = baseURL + path
+    const request = (): Promise<AxiosResponse> => axiosClient.get(requestURL, { params });
 
-        return await invokeRequest(request);
-    }
-
-    async delete(path: string, params?: JSONObject): Promise<unknown> {
-        const request = (): Promise<AxiosResponse> =>
-        this.client.delete(path, { params });
-
-        return await invokeRequest(request);
-    }
-
-    async post(path: string, data: JSONObject): Promise<unknown> {
-        const request = (): Promise<AxiosResponse> => this.client.post(path, data);
-
-        return await invokeRequest(request);
-    }
-
-    async put(path: string, data: JSONObject): Promise<unknown> {
-        const request = (): Promise<AxiosResponse> => this.client.put(path, data);
-
-        return await invokeRequest(request);
-    }
-
-    async patch(path: string, data: JSONObject): Promise<unknown> {
-        const request = (): Promise<AxiosResponse> => this.client.patch(path, data);
-
-        return await invokeRequest(request);
-    }
+    return await invokeRequest(request);
 }
 
-export default new API();
+const post = async(path: string, data: JSONObject): Promise<unknown> => {
+    const request = (): Promise<AxiosResponse> => axiosClient.post(path, data);
+
+    return await invokeRequest(request);
+}
+
+export const rest = {
+    get,
+    post
+}

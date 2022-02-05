@@ -1,11 +1,10 @@
 import api from '../rest';
 
 const list = async(
-    url: string,
     page: number
 ) => {
-    const useUrl = url + '?page=' + page
-    return await api.get(useUrl)
+    const url = 'api/admin/tag/list';
+    return await api.get(url)
 }
 
 export const tag = {
