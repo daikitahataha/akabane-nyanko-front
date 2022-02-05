@@ -8,6 +8,7 @@ import {
 import { Tags } from '../../../datatype/admin/tag.type'
 import { IndexPage } from '../../../state/admin/tag'
 import { useSnapshot } from 'valtio'
+import IndexOperation from '../../../components/admin/common/index-operation'
 
 type Props = {
     tagList: Tags
@@ -15,6 +16,8 @@ type Props = {
 }
 
 const Index: VFC<Props> = (props) => {
+    const { tagList, totalPage } = props
+
     const page = useSnapshot(IndexPage);
     const onPaginate = (
         e: React.MouseEvent<HTMLAnchorElement>,
@@ -24,7 +27,6 @@ const Index: VFC<Props> = (props) => {
         page.paginate(activePage)
     }
 
-    const { tagList, totalPage } = props
     return (
         <>
             <Table striped>
@@ -32,8 +34,7 @@ const Index: VFC<Props> = (props) => {
                     <Table.Row>
                         <Table.HeaderCell>#ID</Table.HeaderCell>
                         <Table.HeaderCell>タグ名</Table.HeaderCell>
-                        <Table.HeaderCell>E-mail</Table.HeaderCell>
-                        <Table.HeaderCell>Called</Table.HeaderCell>
+                        <Table.HeaderCell>操作</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -43,8 +44,9 @@ const Index: VFC<Props> = (props) => {
                             <Table.Row key={index}>
                                 <Table.Cell>{tag.ID}</Table.Cell>
                                 <Table.Cell>{tag.name}</Table.Cell>
-                                <Table.Cell>jhlilk22@yahoo.com</Table.Cell>
-                                <Table.Cell>No</Table.Cell>
+                                <Table.Cell>
+                                    <IndexOperation />
+                                </Table.Cell>
                             </Table.Row>
                         )
                     })}
