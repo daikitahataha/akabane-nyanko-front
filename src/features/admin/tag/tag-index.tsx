@@ -1,13 +1,25 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { NextPage } from 'next'
 import { 
 	Button, 
 	Grid,
-	Header,
+    Header
 } from 'semantic-ui-react'
-import Index from '../../../components/admin/area/index'
+import useSWR from "swr"
+import { useSnapshot } from 'valtio'
+import Index from '../../../components/admin/tag/index'
+import Loading from '../../../components/admin/common/loader'
+import { IndexPage } from '../../../state/admin/tag'
+import { rest } from '../../../api/rest'
 
-const AreaIndex: NextPage = () => {
+const TagIndex: NextPage = () => {
+
+    const page = useSnapshot(IndexPage);
+    const url = 'api/admin/tag/list' + '?page=' + page.page.toString();
+    const {data, error} = useSWR(url, rest.get)
+    if (error) return <div>failed to load</div>
+    if (!data) return <div><Loading /></div>
+
 	return (
 		<div>
 			<Grid>
@@ -23,9 +35,9 @@ const AreaIndex: NextPage = () => {
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
-			<Index />
+            <Index tagList={data.list} totalPage={data.total_page}/>
 		</div>
 	)
 }
 
-export default AreaIndex
+export default TagIndex
